@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PostMessage XSS Demo - Main Page</title>
+    <meta charset="utf-8">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+        }
+        .demo-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .warning {
+            color: #ff4444;
+            padding: 10px;
+            background-color: #ffebee;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-panel">
+        <h1>PostMessage XSS Demo</h1>
+        <p>Demonstration of PostMessage XSS vulnerability on localhost</p>
+        
+        <div class="warning">
+            <strong>Note:</strong> This is a security demonstration. Do not use this code in production!
+        </div>
+
+        <h2>Demo Steps:</h2>
+        <ol>
+            <li>Click "Open Receiver" to start the demo</li>
+            <li>Try sending a safe message first</li>
+            <li>Then try the XSS payload to see the vulnerability</li>
+        </ol>
+
+        <button onclick="openReceiver()">Open Receiver</button>
+        <button onclick="sendSafeMessage()">Send Safe Message</button>
+        <button onclick="sendXSSPayload()">Send XSS Payload</button>
+    </div>
+
+    <script>
+        let receiverWindow;
+        const RECEIVER_URL = 'http://localhost/postmessage-demo/receiver.html';
+        
+        function openReceiver() {
+            receiverWindow = window.open(RECEIVER_URL, 'receiver', 'width=600,height=400');
+        }
+        
+        function sendSafeMessage() {
+            if (!receiverWindow) {
+                alert('Please open receiver window first!');
+                return;
+            }
+            let safeMsg = {
+                url: "http://localhost/postmessage-demo/"
+            };
+            receiverWindow.postMessage(safeMsg, '*');
+            receiverWindow.focus();
+        }
+        
+        function sendXSSPayload() {
+            if (!receiverWindow) {
+                alert('Please open receiver window first!');
+                return;
+            }
+            let xssMsg = {
+                url: "javascript:alert('XSS Payload Executed! This could be malicious code.')"
+            };
+            receiverWindow.postMessage(xssMsg, '*');
+            receiverWindow.focus();
+        }
+    </script>
+</body>
+</html>

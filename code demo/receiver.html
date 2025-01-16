@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PostMessage Receiver</title>
+    <meta charset="utf-8">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .receiver-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .url-display {
+            word-break: break-all;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .warning {
+            color: #dc3545;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="receiver-panel">
+        <h1>Message Receiver</h1>
+        <div class="warning">
+            ⚠️ This page has a vulnerable PostMessage implementation!
+        </div>
+
+        <div class="url-display">
+            Current URL: <span id="currentUrl">None</span>
+        </div>
+
+        <p>Click the link below to trigger the received URL:</p>
+        <a id="redirectLink" href="">Test Link</a>
+        <br><br>
+        <button onclick="window.close()">Close Window</button>
+    </div>
+
+    <script>
+        // Vulnerable implementation - accepts messages from any origin
+        window.addEventListener("message", (event) => {
+            // No origin checking!
+            console.log("Received message:", event.data);
+            document.getElementById("redirectLink").href = event.data.url;
+            document.getElementById("currentUrl").textContent = event.data.url;
+        });
+    </script>
+</body>
+</html>
