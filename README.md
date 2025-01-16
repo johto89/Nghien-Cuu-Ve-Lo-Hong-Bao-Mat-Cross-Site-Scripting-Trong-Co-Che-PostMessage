@@ -12,11 +12,11 @@ Tài liệu này trình bày một nghiên cứu về lỗ hổng bảo mật Cr
 
 - **Khía cạnh bảo mật**: Các nguy cơ bảo mật liên quan đến việc sử dụng postMessage, đặc biệt là tấn công XSS.
 
-- **Phân tích thực nghiệm**: Mô hình thử nghiệm với ba thành phần chính: trang điều khiển, trang nhận tin nhắn và trang tấn công.
+- **Phân tích thực nghiệm**: Mô hình thử nghiệm với ba thành phần chính: trang điều khiển(index.html), trang nhận tin nhắn (receiver.html) và trang tấn công(attacker.html).
 
 - **Kỹ thuật khai thác nâng cao**: Các phương pháp tấn công nhằm khai thác lỗ hổng trong việc triển khai postMessage.
 
-- **Biện pháp phòng chống**: Các phương pháp xác thực nguồn gốc và làm sạch dữ liệu để ngăn chặn các cuộc tấn công XSS.
+- **Biện pháp phòng chống**: Các phương pháp kiểm duyệt nguồn gốc và làm sạch dữ liệu để ngăn chặn các cuộc tấn công XSS.
 
 ## Case Studies
 
@@ -26,16 +26,14 @@ Tài liệu này trình bày một nghiên cứu về lỗ hổng bảo mật Cr
 
 ## References
 
-- HTML Living Standard - Web Messaging
-- OWASP Cross-site Scripting Prevention Cheat Sheet
-- MDN Web Docs - Window.postMessage()
-- Các bài viết nghiên cứu về lỗ hổng postMessage và các trường hợp cụ thể đã được khai thác.
-
-## Disclaimer
-
-Nội dung tài liệu này chỉ mang tính chất tham khảo và không khuyến khích bất kỳ hành vi xâm phạm an ninh nào. Người đọc cần tuân thủ các quy định pháp luật hiện hành và thực hiện các biện pháp bảo mật cần thiết khi phát triển ứng dụng web.
-
-
+− HTML Living Standard - Web Messaging - https://html.spec.whatwg.org/multipage/web-messaging.html
+− OWASP Cross-site Scripting Prevention Cheat Sheet - https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+− MDN Web Docs - Window.postMessage() - https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+− Introduction to postMessage() Vulnerabilities - https://www.yeswehack.com/learn-bug-bounty/introduction-postmessage-vulnerabilities
+− Exploiting PostMessage for cool XSS vulnerabilities - https://manasharsh.medium.com/exploiting-postmessage-for-cool-xss-vulnerabilities-cbea132398e1
+− $20000 Facebook DOM XSS - https://vinothkumar.me/20000-facebook-dom-xss/
+− XSS on any Shopify shop via abuse of the HTML5 structured clone algorithm in postMessage listener on "/:id/digital_wallets/dialog" - https://hackerone.com/reports/231053
+− Bạn đã bao giờ nghe về "lỗ hổng" postMessage ? - https://viblo.asia/p/ban-da-bao-gio-nghe-ve-lo-hong-postmessage-aWj537kp56m
 
 ### Disclaimer
 
