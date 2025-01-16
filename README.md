@@ -1,42 +1,41 @@
 ## Nghiên cứu chi tiết về lỗ hổng bảo mật Cross-Site Scripting (XSS) trong cơ chế postMessage
 
-### Overview
+## Tổng Quan
 
-Tài liệu này nghiên cứu về lỗ hổng bảo mật Cross-Site Scripting (XSS) trong cơ chế `postMessage` của HTML5, một phương thức cho phép giao tiếp an toàn giữa các cửa sổ trình duyệt có nguồn gốc khác nhau. Mặc dù `postMessage` cung cấp một cách thức để trao đổi dữ liệu, việc triển khai không đúng cách có thể dẫn đến các lỗ hổng bảo mật nghiêm trọng.
+Tài liệu này trình bày một nghiên cứu về lỗ hổng bảo mật Cross-Site Scripting (XSS) trong cơ chế PostMessage của HTML5. Nghiên cứu phân tích cách thức hoạt động của PostMessage và các nguy cơ bảo mật tiềm ẩn khi triển khai không đúng cách, đồng thời đề xuất các biện pháp phòng ngừa hiệu quả.
 
-### Key Features
+## Nội dung chính
 
-- **Cơ chế hoạt động của postMessage**: Cho phép giao tiếp giữa các cửa sổ khác nhau mà không vi phạm chính sách cùng nguồn gốc.
+- **Giới thiệu về PostMessage**: Cơ chế cho phép giao tiếp an toàn giữa các cửa sổ trình duyệt có nguồn gốc khác nhau.
   
-- **Nguy cơ bảo mật**: Nếu không kiểm tra nguồn gốc (origin) của thông điệp, kẻ tấn công có thể gửi mã độc vào ứng dụng thông qua `postMessage`, dẫn đến các cuộc tấn công XSS.
+- **Chi tiết kỹ thuật**: Phân tích cú pháp và tham số của phương thức postMessage, cùng với ví dụ sử dụng.
 
-### How It Works
+- **Khía cạnh bảo mật**: Các nguy cơ bảo mật liên quan đến việc sử dụng postMessage, đặc biệt là tấn công XSS.
 
-- **Giao tiếp an toàn**: `postMessage` cho phép truyền thông tin giữa trang chính và iframe hoặc cửa sổ pop-up mà không vi phạm chính sách cùng nguồn gốc.
-  
-- **Thiếu kiểm tra origin**: Nhiều ứng dụng không thực hiện kiểm tra nguồn gốc đúng cách, cho phép kẻ tấn công gửi thông điệp độc hại.
+- **Phân tích thực nghiệm**: Mô hình thử nghiệm với ba thành phần chính: trang điều khiển, trang nhận tin nhắn và trang tấn công.
 
-### Use Cases
+- **Kỹ thuật khai thác nâng cao**: Các phương pháp tấn công nhằm khai thác lỗ hổng trong việc triển khai postMessage.
 
-- **Tấn công XSS**: Tài liệu phân tích các trường hợp tấn công XSS thực tế xảy ra khi ứng dụng không kiểm tra đúng cách nguồn gốc của thông điệp nhận được từ `postMessage`.
+- **Biện pháp phòng chống**: Các phương pháp xác thực nguồn gốc và làm sạch dữ liệu để ngăn chặn các cuộc tấn công XSS.
 
-- **Biện pháp phòng chống**: Đề xuất các biện pháp như kiểm tra nguồn gốc nghiêm ngặt, làm sạch dữ liệu nhận được và sử dụng chính sách bảo mật CORS để giảm thiểu nguy cơ.
+## Case Studies
 
-### Case Studies
-
-1. **Trường hợp Facebook**: Một lỗ hổng trong cách Facebook xử lý sự kiện `postMessage` đã cho phép kẻ tấn công thực thi mã JavaScript độc hại.
+1. **Trường hợp Facebook**: Lỗ hổng trong cách Facebook xử lý sự kiện postMessage, dẫn đến khả năng thực thi mã JavaScript độc hại.
    
-2. **Trường hợp Shopify**: Lỗ hổng XSS qua `postMessage` cho phép kẻ tấn công chèn mã độc vào ứng dụng Shopify.
+2. **Trường hợp Shopify**: Lỗ hổng XSS ảnh hưởng đến tất cả các cửa hàng Shopify thông qua windows.postMessage từ bất kỳ nguồn gốc nào.
 
-### Conclusion
-
-Nghiên cứu nhấn mạnh tầm quan trọng của việc triển khai đúng cách cơ chế `postMessage` để ngăn chặn các cuộc tấn công XSS. Các nhà phát triển cần thực hiện kiểm tra nghiêm ngặt và làm sạch dữ liệu đầu vào để bảo vệ ứng dụng khỏi các mối đe dọa tiềm ẩn.
-
-### References
+## References
 
 - HTML Living Standard - Web Messaging
 - OWASP Cross-site Scripting Prevention Cheat Sheet
-- MDN Web Docs - Window.postMessage() 
+- MDN Web Docs - Window.postMessage()
+- Các bài viết nghiên cứu về lỗ hổng postMessage và các trường hợp cụ thể đã được khai thác.
+
+## Disclaimer
+
+Nội dung tài liệu này chỉ mang tính chất tham khảo và không khuyến khích bất kỳ hành vi xâm phạm an ninh nào. Người đọc cần tuân thủ các quy định pháp luật hiện hành và thực hiện các biện pháp bảo mật cần thiết khi phát triển ứng dụng web.
+
+
 
 ### Disclaimer
 
